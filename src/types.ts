@@ -29,3 +29,8 @@ export type User = {
   id: number;
   username: string;
 };
+
+export type LoginRes = {
+  user: User;
+  token: string;
+};

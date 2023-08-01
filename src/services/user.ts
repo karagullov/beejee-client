@@ -5,7 +5,7 @@ export const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query<User | null, void>({
       query: () => ({
-        url: "/user/me",
+        url: `/user/me?token=${localStorage.getItem("token")}`,
         method: "GET",
       }),
       transformResponse: (response: APIResponse<User>) => response.result,

@@ -10,7 +10,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { TextInput } from "../../components";
 import { useGetUserQuery, useLoginMutation } from "../../services";
-import { ErrorResponse } from "../../types";
+import { ErrorResponse, LoginRes } from "../../types";
 
 type FormInput = {
   username: string;
@@ -24,7 +24,11 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm<FormInput>();
 
-  const onSubmit: SubmitHandler<FormInput> = async (data) => login(data);
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    const res = await login(data);
+    //@ts-ignore
+    if (res?.data?.token) localStorage.setItem("token", res.data.token);
+  };
 
   const [login, { error, data }] = useLoginMutation();
   const { data: user } = useGetUserQuery();

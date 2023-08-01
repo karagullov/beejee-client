@@ -13,6 +13,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     await logout();
+    localStorage.removeItem("token");
     dispatch(api.util.resetApiState());
   };
 
