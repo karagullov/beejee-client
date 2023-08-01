@@ -44,7 +44,7 @@ export const todoApi = api.injectEndpoints({
       { id: number; completed?: boolean; task?: string }
     >({
       query: ({ id, ...body }) => ({
-        url: `/todo/${id}`,
+        url: `/todo/${id}?token=${localStorage.getItem("token")}`,
         method: "PUT",
         body,
       }),
