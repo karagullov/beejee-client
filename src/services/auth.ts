@@ -1,4 +1,4 @@
-import { APIResponse, LoginRes, User } from "../types";
+import { APIResponse, LoginRes } from "../types";
 import { api } from "./api";
 
 export const authApi = api.injectEndpoints({
